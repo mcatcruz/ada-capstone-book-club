@@ -21,32 +21,31 @@ from django.db import models
 
 class Member(models.Model):
 	username = models.CharField(max_length=30)
+	groups = models.ManyToManyField('adabookclubapp.Group')
+
 
 class MemberGroups(models.Model):
-	member_id =  models.ForeignKey("Member", on_delete=models.SET_NULL, null=True)
-	group_id =  models.ForeignKey("Group", on_delete=models.SET_NULL, null=True)
+	member =  models.ForeignKey("Member", on_delete=models.SET_NULL, null=True)
+	group =  models.ForeignKey("Group", on_delete=models.SET_NULL, null=True)
 
 class Group(models.Model):
 	group_name = models.CharField(max_length=30)
-	members = models.ManyToManyField('Member', through='MemberGroups', through_fields=('member_id', 'group_id'),)
+	members = models.ManyToManyField('adabookclubapp.Member')
 
 class Discussion(models.Model):
-	messages =  models.ManyToManyField("Message", through='GroupDiscussions', through_fields=('group_id','discussion_id'))  # How do I get a list of messages in here?
+	messages =  models.ForeignKey("Message", on_delete=models.SET_NULL, null=True)  # How do I get a list of messages in here?
 	date_created = models.DateField
 	group_id = models.ForeignKey("Group", on_delete=models.SET_NULL, null=True)
-	book_id = models.ForeighKey('Book', on_delete=models.SET_NULL, null=True)
+	book_id = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
 
 class Message(models.Model):
 	message = models.TextField
 	date_posted = models.DateField
-
-class DiscussionMessages(models.Model):
-	messages =  models.ForeignKey("Message", on_delete=models.SET_NULL, null=True) # How do I get a list of messages in here?
-	discussion_id = models.ForeignKey("Discussion", on_delete=models.SET_NULL, null=True)
+	discussion_id = models.ForeignKey('Discussion', on_delete=models.SET_NULL, null=True)
 
 class Book(models.Model):
-	title = models.CharField(length=100)
-	author = models.CharField(length=30)
+	title = models.CharField(max_length=100)
+	author = models.CharField(max_length=30)
 
 class BookDiscussions(models.Model):
 	book_id =  models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
