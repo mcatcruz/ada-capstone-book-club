@@ -1,38 +1,38 @@
 from rest_framework import serializers
-from .models import Member, MemberGroups, Group, Discussion, Message, Book, BookDiscussions
+from .models import Member, MemberGroup, Group, Discussion, Message, Book, BookDiscussion
 
 
 class MemberSerializer(serializers.ModelSerializer):
-    class MemberMeta:
+    class Meta:
         model = Member
         fields = ('id' ,'username', 'groups')
 
 class MemberGroupsSerializer(serializers.ModelSerializer):
-    class MemberGroupsMeta:
-        model = MemberGroups
+    class Meta:
+        model = MemberGroup
         fields = ('member', 'group')
 
 class GroupSerializer(serializers.ModelSerializer):
-    class GroupMeta:
+    class Meta:
         model = Group
-        fields = ('group_name', 'members')
+        fields = ('id', 'group_name', 'members')
 
 class DiscussionSerializer(serializers.ModelSerializer):
-	class DiscussionMeta:
+	class Meta:
 		model = Discussion
-		fields = ('messages', 'date_posted', 'discussion_id')
+		fields = ('id', 'messages', 'date_created')
 
 class MessageSerializer(serializers.ModelSerializer):
-	class MessageMeta:
+	class Meta:
 		model = Message
 		fields = ('message', 'date_posted', 'discussion_id')
 
 class BookSerializer(serializers.ModelSerializer):
-	class BookMeta:
+	class Meta:
 		model = Book
-		fields = ('title', 'author')
+		fields = ('id', 'title', 'author')
 
 class BookDiscussionSerializer(serializers.ModelSerializer):
-	class BookDiscussionMeta:
-		model = BookDiscussions
+	class Meta:
+		model = BookDiscussion
 		fields = ('book_id', 'discussion_id')

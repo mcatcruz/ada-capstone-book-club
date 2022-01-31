@@ -24,9 +24,9 @@ class Member(models.Model):
 	groups = models.ManyToManyField('adabookclubapp.Group')
 
 
-class MemberGroups(models.Model):
+class MemberGroup(models.Model):
 	member =  models.ForeignKey("Member", on_delete=models.SET_NULL, null=True)
-	group =  models.ForeignKey("Group", on_delete=models.SET_NULL, null=True)
+	group =  models.ForeignKey("Group", on_delete=models.SET_NULL, null=True,)
 
 class Group(models.Model):
 	group_name = models.CharField(max_length=30)
@@ -47,6 +47,9 @@ class Book(models.Model):
 	title = models.CharField(max_length=100)
 	author = models.CharField(max_length=30)
 
-class BookDiscussions(models.Model):
+	def _str_(self):
+		return self.title
+
+class BookDiscussion(models.Model):
 	book_id =  models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
 	discussion_id =  models.ForeignKey("Discussion", on_delete=models.SET_NULL, null=True) # How do I get a list of discussions in here?

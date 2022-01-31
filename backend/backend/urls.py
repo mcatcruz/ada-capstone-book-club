@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers      
+from adabookclubapp import views
+
+router = routers.DefaultRouter()                   
+router.register(r'members', views.MemberView, 'member')  
+router.register(r'groups', views.GroupView, 'group')
+router.register(r'books', views.BookView, 'book')
+router.register(r'discussions', views.DiscussionView, 'discussion')
+router.register(r'messages', views.MessageView, 'message')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),   
+    path('adabookclub/', include(router.urls)),      
 ]
