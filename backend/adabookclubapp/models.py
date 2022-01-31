@@ -49,4 +49,4 @@ class Book(models.Model):
 
 class BookDiscussions(models.Model):
 	book_id =  models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
-	discussion =  models.ForeignKey("Discussion", on_delete=models.SET_NULL, null=True) # How do I get a list of discussions in here?
+	discussion_id =  models.ForeignKey("Discussion", on_delete=models.SET_NULL, null=True) # How do I get a list of discussions in here?
