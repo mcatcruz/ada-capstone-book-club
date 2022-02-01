@@ -1,17 +1,13 @@
 from django.shortcuts import render
-from .serializers import MemberSerializer, MemberGroupsSerializer, GroupSerializer, DiscussionSerializer, MessageSerializer, BookSerializer, BookDiscussionSerializer
+from .serializers import MemberSerializer, GroupSerializer, DiscussionSerializer, MessageSerializer, BookSerializer, BookDiscussionSerializer
 from rest_framework import viewsets      
-from .models import Member, MemberGroup, Group, Discussion, Message, Book, BookDiscussion        
+from .models import Member, Group, Discussion, Message, Book, BookDiscussion        
 
 # Create your views here.
 
 class MemberView(viewsets.ModelViewSet):  
     serializer_class = MemberSerializer   
     queryset = Member.objects.all()   
-
-class MemberGroupsView(viewsets.ModelViewSet):  
-    serializer_class = MemberGroupsSerializer   
-    queryset = MemberGroup.objects.all()
 
 class GroupView(viewsets.ModelViewSet):
 	serializer_class = GroupSerializer

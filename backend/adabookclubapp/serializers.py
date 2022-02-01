@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Member, MemberGroup, Group, Discussion, Message, Book, BookDiscussion
+from .models import Member, Group, Discussion, Message, Book, BookDiscussion
 
 
 class MemberSerializer(serializers.ModelSerializer):
@@ -7,15 +7,12 @@ class MemberSerializer(serializers.ModelSerializer):
         model = Member
         fields = ('id' ,'username', 'groups')
 
-class MemberGroupsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MemberGroup
-        fields = ('member', 'group')
-
 class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
-        fields = ('id', 'group_name', 'members')
+        fields = ('id', 'group_name', 'members', 'discussions')
+
+	# Want to nest another serializer within GroupSerializer to be able to access discussions when a group is queried
 
 class DiscussionSerializer(serializers.ModelSerializer):
 	class Meta:

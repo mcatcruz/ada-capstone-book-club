@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, MemberGroup, Group, Discussion, Message, Book, BookDiscussion
+from .models import Member, Group, Discussion, Message, Book, BookDiscussion
 
 # Register your models here.
 class AdaBookClubAdmin(admin.ModelAdmin):
@@ -10,5 +10,4 @@ admin.site.register(Group, AdaBookClubAdmin)
 admin.site.register(Discussion, AdaBookClubAdmin)
 admin.site.register(Message, AdaBookClubAdmin)
 admin.site.register(Book, AdaBookClubAdmin)
-admin.site.register(MemberGroup, AdaBookClubAdmin)
 admin.site.register(BookDiscussion, AdaBookClubAdmin)

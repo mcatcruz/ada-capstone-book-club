@@ -21,16 +21,14 @@ from django.db import models
 
 class Member(models.Model):
 	username = models.CharField(max_length=30)
-	groups = models.ManyToManyField('adabookclubapp.Group')
-
-
-class MemberGroup(models.Model):
-	member =  models.ForeignKey("Member", on_delete=models.SET_NULL, null=True)
-	group =  models.ForeignKey("Group", on_delete=models.SET_NULL, null=True,)
 
 class Group(models.Model):
 	group_name = models.CharField(max_length=30)
-	members = models.ManyToManyField('adabookclubapp.Member')
+	members = models.ManyToManyField('Member', related_name='groups')
+
+	@property # a decorator that lets you use the method as a property
+	def discussions(self):
+		return Discussion.objects.filter(group_id=self.id)
 
 class Discussion(models.Model):
 	messages =  models.ForeignKey("Message", on_delete=models.SET_NULL, null=True)  # How do I get a list of messages in here?
