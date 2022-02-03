@@ -2,34 +2,38 @@ from rest_framework import serializers
 from .models import Member, Group, Discussion, Message, Book, BookDiscussion
 
 
-class MemberSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Member
-        fields = ('id' ,'username', 'groups')
-
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = ('id', 'group_name', 'members', 'discussions')
-
-	# Want to nest another serializer within GroupSerializer to be able to access discussions when a group is queried
-
 class DiscussionSerializer(serializers.ModelSerializer):
 	class Meta:
+		ordering = ['-date_created']
 		model = Discussion
-		fields = ('id', 'messages', 'date_created')
+		fields = ('__all__')
+
+class GroupSerializer(serializers.ModelSerializer):
+	discussions = DiscussionSerializer(read_only=True, many=True)
+	class Meta:
+		ordering = ['group_name']
+		model = Group
+		fields = ('__all__')
+
+class MemberSerializer(serializers.ModelSerializer):
+	groups = GroupSerializer(read_only=True, many=True)
+	
+	class Meta:
+		model = Member
+		fields = ('__all__')
 
 class MessageSerializer(serializers.ModelSerializer):
 	class Meta:
+		ordering = ['-date_posted']     
 		model = Message
-		fields = ('message', 'date_posted', 'discussion_id')
+		fields = ('__all__')
 
 class BookSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Book
-		fields = ('id', 'title', 'author')
+		fields = ('__all__')
 
 class BookDiscussionSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = BookDiscussion
-		fields = ('book_id', 'discussion_id')
+		fields = ('__all__')

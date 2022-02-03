@@ -9,6 +9,7 @@ idna==2.10
 iniconfig==1.1.1
 MarkupSafe==2.0.1
 packaging==20.9
+Pillow==9.0.0
 pluggy==0.13.1
 psycopg2==2.9.3
 py==1.10.0
