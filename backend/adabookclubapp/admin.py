@@ -1,13 +1,12 @@
 from django.contrib import admin
-from .models import Member, Group, Discussion, Message, Book, BookDiscussion
+from .models import Member, Group, Discussion, Message, Book
 
 # Register your models here.
 class AdaBookClubAdmin(admin.ModelAdmin):
-  list = ('Member', 'Group', 'Discussion', 'Message', 'Book', 'MemberGroup', 'BookDiscussion')
+  list = ('Member', 'Group', 'Discussion', 'Message', 'Book', 'MemberGroup')
 
 admin.site.register(Member, AdaBookClubAdmin)
 admin.site.register(Group, AdaBookClubAdmin)
 admin.site.register(Discussion, AdaBookClubAdmin)
 admin.site.register(Message, AdaBookClubAdmin)
 admin.site.register(Book, AdaBookClubAdmin)
-admin.site.register(BookDiscussion, AdaBookClubAdmin)

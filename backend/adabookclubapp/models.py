@@ -2,7 +2,6 @@ from tkinter import TRUE
 from django.db import models
 from django.urls import reverse 
 
-
 # Create your models here.
 # Relationships
 	# A group can have many members
@@ -27,6 +26,10 @@ class Member(models.Model):
 
 	def __str__(self):
 		return self.username
+	
+	@property
+	def messages_authored(self):
+		return Message.objects.filter(member_id=self.id)
 
 class Group(models.Model):
 	group_name = models.CharField(max_length=100, help_text='Enter a group name', unique=True)
@@ -41,27 +44,30 @@ class Group(models.Model):
 
 class Discussion(models.Model):
 	subject = models.CharField(max_length=100, blank=False, help_text='Enter a subject for discussion', unique=True)
-	messages =  models.ForeignKey("Message", on_delete=models.SET_NULL, null=True)
 	date_created = models.DateField(auto_now=True)
 	group_id = models.ForeignKey("Group", on_delete=models.CASCADE)
-	# book_id = models.ForeignKey('Book', on_delete=models.SET_NULL, null=True)
+	
 
 	def __str__(self):
 		return self.subject
+
+	@property
+	def messages(self):
+		return Message.objects.filter(discussion_id=self.id)
 	
 class Message(models.Model):
-	message = models.TextField
+	message = models.TextField(blank=False, help_text='Type message here')
 	date_posted = models.DateField
-	discussion_id = models.ForeignKey('Discussion', on_delete=models.SET_NULL, null=True)
+	discussion_id = models.ForeignKey('Discussion', on_delete=models.CASCADE)
+	member_id = models.ForeignKey('Member', on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.message
 	
 
 class Book(models.Model):
 	title = models.CharField(max_length=100)
-	author = models.CharField(max_length=30)
+	author = models.CharField(max_length=100)
 
 	def __str__(self):
 		return self.title
-
-class BookDiscussion(models.Model):
-	book_id =  models.ForeignKey("Book", on_delete=models.SET_NULL, null=True)
-	discussion_id =  models.ForeignKey("Discussion", on_delete=models.SET_NULL, null=True) # How do I get a list of discussions in here?
