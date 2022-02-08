@@ -1,1 +1,1 @@
-web: gunicorn ada-capstone-book-club.wsgi
+web: gunicorn backend.wsgi
