@@ -1,0 +1,1 @@
+web: gunicorn ada-capstone-book-club.wsgi
