@@ -1,4 +1,4 @@
-from tkinter import TRUE
+# from tkinter import TRUE
 from django.db import models
 from django.urls import reverse 
 
