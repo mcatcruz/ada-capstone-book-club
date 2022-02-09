@@ -1,1 +1,1 @@
-web: gunicorn adabookclubapp.wsgi
+web: gunicorn backend.wsgi
