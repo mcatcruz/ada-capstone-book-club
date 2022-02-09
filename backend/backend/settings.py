@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'adabookclubapp',
+    'backend.adabookclubapp',
     'corsheaders',
     'rest_framework',
     'whitenoise.runserver_nostatic',
