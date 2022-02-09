@@ -29,6 +29,5 @@ router.register(r'discussions', views.DiscussionView, 'discussion')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),   
-    path('adabookclub/', include(router.urls)),  
-    path('/', include(router.urls))    
+    path('adabookclub/', include(router.urls)),   
 ]
