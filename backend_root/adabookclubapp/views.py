@@ -23,6 +23,6 @@ class MessageView(viewsets.ModelViewSet):
 	serializer_class = MessageSerializer
 	queryset = Message.objects.all()
 
-class BookView(viewsets.ModelViewSet):
-	serializer_class = BookSerializer
-	queryset = Book.objects.all()
+# class BookView(viewsets.ModelViewSet):
+# 	serializer_class = BookSerializer
+# 	queryset = Book.objects.all()

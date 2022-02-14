@@ -14,11 +14,12 @@ class DiscussionSerializer(serializers.ModelSerializer):
 		model = Discussion
 		fields = ('__all__')
 
-class BookSerializer(serializers.ModelSerializer):
-	discussions = DiscussionSerializer(read_only=True, many=True)
-	class Meta:
-		model = Book
-		fields = ('__all__')
+# class BookSerializer(serializers.ModelSerializer):
+# 	discussions = DiscussionSerializer(read_only=True, many=True)
+# 	class Meta:
+# 		model = Book
+# 		fields = ('__all__')
+
 class GroupSerializer(serializers.ModelSerializer):
 	discussions = DiscussionSerializer(read_only=True, many=True)
 	class Meta:
