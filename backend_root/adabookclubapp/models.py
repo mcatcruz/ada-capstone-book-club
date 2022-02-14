@@ -34,9 +34,9 @@ class Member(models.Model):
 
 class Group(models.Model):
 	group_name = models.CharField(max_length=100, help_text='Enter a group name', unique=True)
-	book_title = models.CharField(max_length=100),
-	book_author = models.CharField(max_length=100, default="Jane Doe"),
-	book_pages = models.IntegerField
+	book_title = models.CharField(max_length=100, default="A Book")
+	book_author = models.CharField(max_length=100, default="Jane Doe")
+	book_pages = models.IntegerField(default=1)
 	members = models.ManyToManyField('Member', related_name='groups')
 
 	def __str__(self):
