@@ -22,7 +22,7 @@ from adabookclubapp import views
 router = routers.DefaultRouter()                   
 router.register(r'members', views.MemberView, 'member')  
 router.register(r'groups', views.GroupView, 'group')
-router.register(r'books', views.BookView, 'book')
+# router.register(r'books', views.BookView, 'book')
 router.register(r'messages', views.MessageView, 'message')
 router.register(r'discussions', views.DiscussionView, 'discussion')
 

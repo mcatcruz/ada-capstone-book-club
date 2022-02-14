@@ -1,7 +1,7 @@
 # from tkinter import TRUE
 from django.db import models
-from django.urls import reverse
-from pytz import timezone 
+from pytz import timezone
+from django.utils import timezone 
 
 # Create your models here.
 # Relationships
@@ -35,7 +35,7 @@ class Member(models.Model):
 class Group(models.Model):
 	group_name = models.CharField(max_length=100, help_text='Enter a group name', unique=True)
 	book_title = models.CharField(max_length=100),
-	book_author = models.CharField(max_length=100)
+	book_author = models.CharField(max_length=100, default="Jane Doe"),
 	book_pages = models.IntegerField
 	members = models.ManyToManyField('Member', related_name='groups')
 
@@ -61,7 +61,7 @@ class Discussion(models.Model):
 	
 class Message(models.Model):
 	message = models.TextField(blank=False, help_text='Type message here')
-	date_posted = models.DateTimeField(default=timezone.now)
+	date_posted = models.DateTimeField(auto_now=True)
 	discussion_id = models.ForeignKey('Discussion', on_delete=models.CASCADE)
 	member_id = models.ForeignKey('Member', on_delete=models.CASCADE)
 

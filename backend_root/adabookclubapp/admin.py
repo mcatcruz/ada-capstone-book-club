@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Member, Group, Discussion, Message, Book
+from .models import Member, Group, Discussion, Message
 
 # Register your models here.
 class AdaBookClubAdmin(admin.ModelAdmin):

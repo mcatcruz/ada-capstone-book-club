@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .serializers import MemberSerializer, GroupSerializer, DiscussionSerializer, MessageSerializer, BookSerializer
+from .serializers import MemberSerializer, GroupSerializer, DiscussionSerializer, MessageSerializer
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Member, Group, Discussion, Message, Book        
+from .models import Member, Group, Discussion, Message        
 
 # Create your views here.
 
