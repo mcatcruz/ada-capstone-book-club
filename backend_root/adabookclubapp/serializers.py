@@ -25,7 +25,7 @@ class GroupSerializer(serializers.ModelSerializer):
 	class Meta:
 		ordering = ['group_name']
 		model = Group
-		fields = ('group_name', 'book_title', 'discussions', 'book_author', 'book_pages', 'members')
+		fields = ('__all__')
 
 class MemberSerializer(serializers.ModelSerializer):
 	groups = GroupSerializer(read_only=True, many=True)
@@ -33,5 +33,3 @@ class MemberSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Member
 		fields = ('__all__')
-		read_only_fields = ('date_posted') 
-
