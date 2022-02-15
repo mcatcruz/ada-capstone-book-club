@@ -24,6 +24,7 @@ from django.utils import timezone
 
 class Member(models.Model):
 	username = models.CharField(max_length=30, help_text='Enter a username', unique=True)
+	email = models.EmailField(max_length=300, default="ada@ada.com")
 
 	def __str__(self):
 		return self.username
