@@ -33,3 +33,7 @@ class MemberSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Member
 		fields = ('__all__')
+
+class MemberEmailSerializer(serializers.Serializer):
+	email = serializers.EmailField(required=True)
+	
