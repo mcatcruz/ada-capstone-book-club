@@ -62,6 +62,15 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://ada-capstone-book-club.herokuapp.com/',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ada-capstone-book-club.herokuapp.com/',
+]
+
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
