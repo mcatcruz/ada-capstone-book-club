@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 [Frontend][frontend-url]
-[Heroku][herokuapp-url]
+
 
 
 <!-- PROJECT LOGO -->
